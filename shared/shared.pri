@@ -31,3 +31,4 @@ SOURCES += 	$$SHARED/archive.cpp \
 #The following line was inserted by qt3to4
 QT +=  qt3support
 CONFIG += console
+CONFIG -= gui app_bundle
