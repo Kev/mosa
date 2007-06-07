@@ -15,6 +15,10 @@
 #ifndef XGETOPT_H
 #define XGETOPT_H
 
+#ifndef TCHAR
+#define TCHAR char
+#endif
+
 extern int optind, opterr;
 extern TCHAR *optarg;
 

@@ -1,5 +1,10 @@
 TEMPLATE = app
 TARGET = ../bin/mosa
+
+windows {
+	TARGET =  ../../bin/mosa
+}
+
 include(../shared/shared.pri)
 
 

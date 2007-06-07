@@ -1,5 +1,8 @@
 TEMPLATE = app
 TARGET = ../bin/samosa
+windows {
+	TARGET = ../../bin/samosa
+}
 include(../shared/shared.pri)
 
 

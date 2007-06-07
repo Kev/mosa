@@ -24,6 +24,9 @@ USA
 #include "dominanceannealer.h"
 #include "dtlzsolver.h"
 #include "math.h"
+#ifdef Q_WS_WIN
+#include "XGetopt.h"
+#endif
 //#include "assert.h"
 //#define ASSERT assert
 
