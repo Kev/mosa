@@ -1,5 +1,10 @@
 SHARED = ../shared
-INCLUDEPATH += $$SHARED/
+INCLUDEPATH += $$SHARED/ 
+windows {
+	INCLUDEPATH += $$SHARED/XGetopt
+	HEADERS += $$SHARED/XGetopt/XGetopt.h
+	SOURCES += $$SHARED/XGetopt/XGetopt.cpp
+}
 MOC_DIR     = .moc
 OBJECTS_DIR = .obj
 UI_DIR      = .ui

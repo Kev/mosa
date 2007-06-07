@@ -26,6 +26,9 @@ USA
 #include "math.h"
 //#include "assert.h"
 //#define ASSERT assert
+#ifdef Q_WS_WIN
+#include "XGetopt.h"
+#endif 
 
 /*! \mainpage SAMOSA
  *
@@ -103,7 +106,7 @@ int main(int argc, char *argv[])
   uint lowTemperatureAfter = 10000;
   bool increasedOutput = false;
   uint attainmentSamples = 100;
-	bool vectorPerturbation = false;
+  bool vectorPerturbation = false;
   //First off, let's parse the command-line arguments
   char* short_options="d:i:p:s:x:b:g:S:GOPVvh";
   int option_char;
@@ -117,9 +120,9 @@ int main(int argc, char *argv[])
       case 'O': iterationOutput = true;break;
       case 's': outputLabel = optarg;break;
       case 'g': lowTemperatureAfter = atoi(optarg);break;
-			case 'b': burninLength = atoi(optarg);break;
+      case 'b': burninLength = atoi(optarg);break;
       case 'S': attainmentSamples = atoi(optarg);break;
-			case 'P': vectorPerturbation = true;break;
+      case 'P': vectorPerturbation = true;break;
       case 'v': increasedOutput = true;break;
       case 'V': printVersion();exit(0);
       case 'h': printOptions(argv[0]);
@@ -131,8 +134,8 @@ int main(int argc, char *argv[])
   {
     qDebug("Setting coolingFactor automagically");
     coolingFactor=exp( ( log(lowTemperature) - log(startingTemperature) ) 
-		    / 
-		    ( lowTemperatureAfter / coolingFrequency ) );
+            / 
+            ( lowTemperatureAfter / coolingFrequency ) );
   }
   qDebug(QString("coolingFactor is %1").arg(coolingFactor));
   
@@ -150,14 +153,14 @@ int main(int argc, char *argv[])
   ASSERT( numParameters > 0);
 
   MosaAnnealer *sa = new MosaAnnealer(numParameters, numObjectives, problem, startingTemperature, coolingFactor, coolingFrequency, attainmentSamples, vectorPerturbation);
-	if (burninLength > 0) {
-		iterations -= sa->doBurninIteration(burninLength);
-	}
-	for (uint i = 0; i < iterations; ++i) {
+  if (burninLength > 0) {
+    iterations -= sa->doBurninIteration(burninLength);
+  }
+  for (uint i = 0; i < iterations; ++i) {
     sa->doIteration();
     if (increasedOutput || i % 1000 == 0) {
       printf("Iteration %d, archive size %d, state size %d, acceptances %d\n",i,sa->getArchiveSize(),sa->getStateSize(), sa->getAcceptanceCount());
-		}
+    }
     if (i % 1000 == 0){
       QString genLabel=QString("%1-generation-%2").arg(outputLabel).arg(i);
       sa->saveState(genLabel);
