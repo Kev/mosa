@@ -145,15 +145,21 @@ void SingleState::vectorPerturbation()
 	
 	bool done = false;
 	while( !done ) {
-		double length = 0;
+		double vectorlength = 0;
 		for (uint i = 0; i < solution->getNumParameters(); i++) {
 			perturbations[i] = Random::gaussian();
-			length += perturbations[i] * perturbations[i];
+			vectorlength += perturbations[i] * perturbations[i];
 		}
-		length = sqrt(length);
+		vectorlength = sqrt(vectorlength);
 		done = true;
+		double perturbationlength = log( Random::uniform() );
+		perturbationlength *= 0.5;
+		if ( Random::uniform() < 0.5 ) {
+			perturbationlength *= -1;
+		}
 		for (uint i = 0; i < solution->getNumParameters(); i++) {
-			perturbations[i] /= length;
+			perturbations[i] *= perturbationlength;
+			perturbations[i] /= vectorlength;
 			double newVal = solution->getParameter(i) + perturbations[i];
 			if ( 0.0 > newVal || newVal > 1.0 ) {
 				done = false;

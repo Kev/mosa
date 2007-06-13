@@ -1,0 +1,30 @@
+This package provides a (currently incomplete) implementation of the
+dominance-based multi-objective simulated annealing algorithm proposed in:
+
+K.I. Smith, R.M. Everson, J.E. Fieldsend "Dominance Measures for
+Multi-Objective Simulated Annealing", Proceedings of the 2004 IEEE Congress on
+Evolutionary Computation (CEC'04), Portland, Oregon, pp 23-30
+
+K.I. Smith, R.M. Everson, J.E. Fieldsend, C. Murphy and R.Misra
+"Dominance-Based Multi-Objective Simulated Annealing ", IEEE Transactions on
+Evolutionary Computation, pp forthcoming
+
+as well as an implementation of the set-based multi-objective simulated
+annealer proposed in
+
+Kevin Smith "A Study of Simulated Annealing Techniques for Multi-Objective
+Optimisation" PhD Thesis, University of Exeter,
+http://kismith.co.uk/files/thesis/thesis.pdf
+
+Compiling 
+========= 
+
+This package will require the Trolltech Qt library to compile. It should 
+work on all platforms Qt works on, and has been tested on Linux, OS X and 
+Windows.
+
+To compile, simply run
+qmake
+to generate the Makefiles, and then
+make
+to compile
