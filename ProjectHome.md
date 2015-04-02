@@ -1,0 +1,1 @@
+The MOSA toolkit provides reference implementations in C++ of several multi-objective simulated annealing algorithms.
